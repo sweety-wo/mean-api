@@ -1,0 +1,63 @@
+<div layout="column">
+    <md-sidenav ng-if="main.isLoggedIn()" class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+        <md-toolbar class="md-tall md-accent">
+
+            <div layout="column" layout-padding class="profile-container">
+                <div flex></div>
+                <div layout-padding layout="column">
+                    <div class="profile-name">{{ main.getCurrentUser().name }}</div>
+                    <div class="profile-email">{{ main.getCurrentUser().email }}</div>
+                </div>
+            </div>
+        </md-toolbar>
+        <md-content class="navigation-list">
+            <md-list ng-click="main.fnToggleLeft()" ng-cloak flex>
+                <md-list-item ui-sref="main.contacts" ui-sref-active="active">
+                    <md-icon md-font-set="fa fa-lg fa-fw fa-book m-t-16 m-r-5"></md-icon>
+                    <p>Contacts</p>
+                </md-list-item>
+            </md-list>
+            <md-divider></md-divider>
+        </md-content>
+    </md-sidenav>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button ng-if="main.isLoggedIn()" ng-click="main.fnToggleLeft()" class="md-icon-button" aria-label="Settings">
+                <md-icon  md-font-set="fa fa-lg fa-reorder m-t-5"></md-icon>
+            </md-button>
+            <h2>
+                <span>API MEAN</span>
+            </h2>
+            <span flex=""></span>
+            <md-menu  ng-if="main.isLoggedIn()">
+                <md-button aria-label="Open phone interactions menu" class="md-icon-button"
+                           ng-click="main.fnOpenMenu($mdOpenMenu, $event)">
+                    <md-icon md-menu-origin md-font-set="fa fa-lg fa-ellipsis-v m-t-5"></md-icon>
+                </md-button>
+                <md-menu-content width="3">
+                    <md-menu-item>
+                        <md-button ui-sref="main.settings">
+                            <md-icon md-font-set="fa fa-lg fa-cog"></md-icon>
+                            Settings
+                        </md-button>
+                    </md-menu-item>
+
+                    <md-menu-divider></md-menu-divider>
+
+                    <md-menu-item ng-show="main.isLoggedIn()">
+                        <md-button ng-click="main.fnSignOut()">
+                            <md-icon md-font-set="fa fa-lg fa-power-off"></md-icon>
+                            Logout
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+    </md-toolbar>
+    <ui-view layout="column" layout-fill flex></ui-view>
+</div>
+
+
+
+
+

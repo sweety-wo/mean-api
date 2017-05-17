@@ -1,0 +1,77 @@
+<md-content class="md-padding">
+    <md-card class="register-card">
+        <md-toolbar layout="column" layout-align="center center" class="md-hue-1">
+            <h2 class="md-headline text-center">Sign Up</h2>
+        </md-toolbar>
+        <md-card-content>
+            <div layout="row" layout-align="center center">
+                <md-button class="md-fab md-mini md-warn" aria-label="google"
+                           ng-click="signup.fnSignUpOauth('google')">
+                    <md-icon md-font-set="fa fa-lg fa-google-plus m-t-10"></md-icon>
+                </md-button>
+                <md-button class="md-fab md-mini md-primary" aria-label="facebook"
+                           ng-click="signup.fnSignUpOauth('facebook')">
+                    <md-icon md-font-set="fa fa-lg fa-facebook m-t-10"></md-icon>
+                </md-button>
+                <md-button class="md-fab md-mini md-accent" aria-label="twitter"
+                           ng-click="signup.fnSignUpOauth('twitter')">
+                    <md-icon md-font-set="fa fa-lg fa-twitter m-t-10"></md-icon>
+                </md-button>
+            </div>
+            <form name="form" ng-submit="form.$valid && signup.fnSignUp(form)" novalidate>
+                <div layout="column">
+                    <md-input-container>
+                        <label>Name</label>
+                        <md-icon class="md-primary md-hue-1" md-font-set="fa fa-lg fa-user m-t-5"></md-icon>
+                        <input required name="name" ng-model="signup.user.name">
+
+                        <div ng-messages="form.name.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="column">
+                    <md-input-container>
+                        <label>Email</label>
+                        <md-icon class="md-primary md-hue-1" md-font-set="fa fa-lg fa-envelope m-t-5"></md-icon>
+                        <input required name="email" type="email" ng-model="signup.user.email">
+
+                        <div ng-messages="form.email.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="email">This field must be a valid email address.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="column">
+                    <md-input-container>
+                        <label>Password</label>
+                        <md-icon class="md-primary md-hue-1" md-font-set="fa fa-lg fa-lock m-t-5"></md-icon>
+                        <input required type="password" name="password" ng-model="signup.user.password">
+
+                        <div ng-messages="form.password.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="column">
+                    <md-input-container>
+                        <label>Confirm Password</label>
+                        <md-icon class="md-primary md-hue-1" md-font-set="fa fa-lg fa-lock m-t-5"></md-icon>
+                        <input required password-verify="signup.user.password" type="password" name="password_c"
+                               ng-model="signup.user.password_c">
+
+                        <div ng-messages="form.password_c.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="passwordVerify">Password doesn't match.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="column">
+                    <md-button class="md-raised md-primary md-hue-1" type="submit">Sign up</md-button>
+                    <md-button class=" md-primary" ui-sref="main.signin">Sign in</md-button>
+                </div>
+            </form>
+        </md-card-content>
+    </md-card>
+</md-content>
+
